@@ -18,7 +18,6 @@ import org.ansj.util.MyStaticValue;
  * 用于检索的分词方式
  * 
  * @author ansj
- * 
  */
 public class IndexAnalysis extends Analysis {
     private Forest[] forests = null;
@@ -28,8 +27,7 @@ public class IndexAnalysis extends Analysis {
         // TODO Auto-generated constructor stub
     }
 
-    private IndexAnalysis() {
-    };
+    private IndexAnalysis() {};
 
     public IndexAnalysis(Forest[] forests) {
         // TODO Auto-generated constructor stub
@@ -56,10 +54,11 @@ public class IndexAnalysis extends Analysis {
                 if (forests == null) {
                     new UserDefineRecognition(graph.terms).recognition();
                 } else {
-                    for (Forest forest : forests) {
+                    for (Forest forest: forests) {
                         if (forest == null)
                             continue;
-                        new UserDefineRecognition(graph.terms, forest).recognition();
+                        new UserDefineRecognition(graph.terms, forest)
+                                .recognition();
                     }
                 }
 
@@ -84,7 +83,7 @@ public class IndexAnalysis extends Analysis {
                         temp = term.getName();
                         term = term.getNext();
                         if (term == null || term.getName().length() == 1
-                            || temp.equals(term.getName())) {
+                                || temp.equals(term.getName())) {
                             break;
                         }
 

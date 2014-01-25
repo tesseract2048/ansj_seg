@@ -19,11 +19,13 @@ public class NumRecognition {
         for (int i = 0; i < length; i++) {
             if (terms[i] == null) {
                 continue;
-            } else if (".".equals(terms[i].getName()) || "．".equals(terms[i].getName())) {
+            } else if (".".equals(terms[i].getName())
+                    || "．".equals(terms[i].getName())) {
                 // 如果是.前后都为数字进行特殊处理
                 to = terms[i].getTo();
                 from = terms[i].getFrom();
-                if (from.getTermNatures().numAttr.flag && to.getTermNatures().numAttr.flag) {
+                if (from.getTermNatures().numAttr.flag
+                        && to.getTermNatures().numAttr.flag) {
                     from.setName(from.getName() + "." + to.getName());
                     TermUtil.termLink(from, to.getTo());
                     terms[to.getOffe()] = null;
@@ -42,7 +44,7 @@ public class NumRecognition {
             }
             // 如果是数字结尾
             if (MyStaticValue.isQuantifierRecognition
-                && temp.getTermNatures().numAttr.numEndFreq > 0) {
+                    && temp.getTermNatures().numAttr.numEndFreq > 0) {
                 terms[i].setName(terms[i].getName() + temp.getName());
                 temp = temp.getTo();
             }

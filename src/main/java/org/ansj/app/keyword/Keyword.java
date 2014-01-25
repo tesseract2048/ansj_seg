@@ -2,8 +2,11 @@ package org.ansj.app.keyword;
 
 public class Keyword implements Comparable<Keyword> {
     private String name;
+
     private double score;
+
     private double idf;
+
     private int freq;
 
     public Keyword(String name, int docFreq, int weight) {
@@ -46,7 +49,7 @@ public class Keyword implements Comparable<Keyword> {
     @Override
     public String toString() {
         // TODO Auto-generated method stub
-        return name;//"="+score+":"+freq+":"+idf;
+        return name;// "="+score+":"+freq+":"+idf;
     }
 
 }

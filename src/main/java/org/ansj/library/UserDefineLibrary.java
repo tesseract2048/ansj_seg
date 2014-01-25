@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.util.HashMap;
 
 import love.cq.domain.Forest;
 import love.cq.domain.Value;
@@ -65,14 +64,14 @@ public class UserDefineLibrary {
         String ambiguityLibrary = MyStaticValue.ambiguityLibrary;
         if (StringUtil.isBlank(ambiguityLibrary)) {
             LIBRARYLOG.warning("init ambiguity  waring :" + ambiguityLibrary
-                               + " because : not find that file or can not to read !");
+                    + " because : not find that file or can not to read !");
             return;
         }
         try {
             ambiguityLibrary = MyStaticValue.ambiguityLibrary;
         } catch (Exception exception) {
             LIBRARYLOG.warning("init ambiguity  waring :" + ambiguityLibrary
-                               + " because : not find that file or can not to read !");
+                    + " because : not find that file or can not to read !");
         }
         File file = new File(ambiguityLibrary);
         if (file.isFile() && file.canRead()) {
@@ -81,13 +80,13 @@ public class UserDefineLibrary {
             } catch (Exception e) {
                 // TODO Auto-generated catch block
                 LIBRARYLOG.warning("init ambiguity  error :" + ambiguityLibrary
-                                   + " because : not find that file or can not to read !");
+                        + " because : not find that file or can not to read !");
                 e.printStackTrace();
             }
             LIBRARYLOG.info("init ambiguityLibrary ok!");
         } else {
             LIBRARYLOG.warning("init ambiguity  waring :" + ambiguityLibrary
-                               + " because : not find that file or can not to read !");
+                    + " because : not find that file or can not to read !");
         }
     }
 
@@ -112,7 +111,8 @@ public class UserDefineLibrary {
     public static void loadFile(Forest forest, File file) {
         // TODO Auto-generated method stub
         if (!file.canRead()) {
-            LIBRARYLOG.warning("file in path " + file.getAbsolutePath() + " can not to read!");
+            LIBRARYLOG.warning("file in path " + file.getAbsolutePath()
+                    + " can not to read!");
             return;
         }
         String temp = null;
@@ -127,14 +127,16 @@ public class UserDefineLibrary {
                 } else {
                     strs = temp.split("\t");
                     if (strs.length != 3) {
-                        value = new Value(strs[0], DEFAULT_NATURE, DEFAULT_FREQ_STR);
+                        value = new Value(strs[0], DEFAULT_NATURE,
+                                DEFAULT_FREQ_STR);
                     } else {
                         value = new Value(strs[0], strs[1], strs[2]);
                     }
                     Library.insertWord(forest, value);
                 }
             }
-            LIBRARYLOG.info("init user userLibrary ok path is : " + file.getAbsolutePath());
+            LIBRARYLOG.info("init user userLibrary ok path is : "
+                    + file.getAbsolutePath());
         } catch (UnsupportedEncodingException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -157,7 +159,7 @@ public class UserDefineLibrary {
             file = new File(path);
             if (!file.canRead() || file.isHidden()) {
                 LIBRARYLOG.warning("init userLibrary  waring :" + path
-                                   + " because : not find that file or can not to read !");
+                        + " because : not find that file or can not to read !");
                 return;
             }
             if (file.isFile()) {
@@ -171,7 +173,7 @@ public class UserDefineLibrary {
                 }
             } else {
                 LIBRARYLOG.warning("init user library  error :" + path
-                                   + " because : not find that file !");
+                        + " because : not find that file !");
             }
         }
     }

@@ -14,12 +14,14 @@ import org.ansj.util.TermUtil;
  * 人名识别工具类
  * 
  * @author ansj
- * 
  */
 public class AsianPersonRecognition {
-    private static final double[] FACTORY = { 0.16271366224044456, 0.8060521860870434,
-                                             0.031234151672511947 };
+    private static final double[] FACTORY = {
+        0.16271366224044456, 0.8060521860870434, 0.031234151672511947
+    };
+
     private boolean skip = false;
+
     private Term[] terms;
 
     // 名称是否有歧异
@@ -39,7 +41,7 @@ public class AsianPersonRecognition {
 
     public void recognition() {
         List<Term> termList = recogntion_();
-        for (Term term2 : termList) {
+        for (Term term2: termList) {
             TermUtil.insertTerm(terms, term2);
         }
     }
@@ -169,14 +171,15 @@ public class AsianPersonRecognition {
         // TODO Auto-generated method stub
         List<NewWord> all = new ArrayList<NewWord>();
         List<Term> termList = recogntion_();
-        for (Term term2 : termList) {
-            all.add(new NewWord(term2.getName(), TermNatures.NR, term2.selfScore, 1));
+        for (Term term2: termList) {
+            all.add(new NewWord(term2.getName(), TermNatures.NR,
+                    term2.selfScore, 1));
         }
         return all;
     }
 
     /**
-     * 人名消歧,比如.邓颖超生前->邓颖 超生 前 fix to 丁颖超 生 前! 
+     * 人名消歧,比如.邓颖超生前->邓颖 超生 前 fix to 丁颖超 生 前!
      */
     public static void nameAmbiguity(Term[] terms) {
         Term term = null;
@@ -184,13 +187,13 @@ public class AsianPersonRecognition {
         for (int i = 0; i < terms.length - 1; i++) {
             term = terms[i];
             if (term != null && term.getTermNatures() == TermNatures.NR
-                && term.getName().length() == 2) {
+                    && term.getName().length() == 2) {
                 next = terms[i + 2];
                 if (next.getTermNatures().personAttr.split > 0) {
                     term.setName(term.getName() + next.getName().charAt(0));
                     terms[i + 2] = null;
-                    terms[i + 3] = new Term(next.getName().substring(1), next.getOffe(),
-                        TermNatures.NULL);
+                    terms[i + 3] = new Term(next.getName().substring(1),
+                            next.getOffe(), TermNatures.NULL);
                     TermUtil.termLink(term, terms[i + 3]);
                     TermUtil.termLink(terms[i + 3], next.getTo());
                 }

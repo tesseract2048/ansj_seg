@@ -6,66 +6,68 @@ package org.ansj.domain;
  * @author ansj
  */
 public class NewWordNatureAttr {
-	public static final NewWordNatureAttr NULL = new NewWordNatureAttr();
-	private int b;
-	private int m;
-	private int e;
+    public static final NewWordNatureAttr NULL = new NewWordNatureAttr();
 
-	// 5 20
-	private int all;
+    private int b;
 
-	private NewWordNatureAttr() {
-	}
+    private int m;
 
-	/**
-	 * 构造方法
-	 * 
-	 * @param b
-	 * @param m
-	 * @param e
-	 * @param allFreq
-	 */
-	public NewWordNatureAttr(int b, int m, int e) {
-		this.all += b + m + e;
-		this.b = b;
-		this.m = m;
-		this.e = e;
-	}
+    private int e;
 
-	public void updateAll(int allValue) {
-		this.all += (allValue * 100);
-	}
+    // 5 20
+    private int all;
 
-	public int getB() {
-		return b;
-	}
+    private NewWordNatureAttr() {}
 
-	public void setB(int b) {
-		this.b = b;
-	}
+    /**
+     * 构造方法
+     * 
+     * @param b
+     * @param m
+     * @param e
+     * @param allFreq
+     */
+    public NewWordNatureAttr(int b, int m, int e) {
+        this.all += b + m + e;
+        this.b = b;
+        this.m = m;
+        this.e = e;
+    }
 
-	public int getM() {
-		return m;
-	}
+    public void updateAll(int allValue) {
+        this.all += (allValue * 100);
+    }
 
-	public void setM(int m) {
-		this.m = m;
-	}
+    public int getB() {
+        return b;
+    }
 
-	public int getE() {
-		return e;
-	}
+    public void setB(int b) {
+        this.b = b;
+    }
 
-	public void setE(int e) {
-		this.e = e;
-	}
+    public int getM() {
+        return m;
+    }
 
-	public int getAll() {
-		return all;
-	}
+    public void setM(int m) {
+        this.m = m;
+    }
 
-	public void setAll(int all) {
-		this.all = all;
-	}
-	
+    public int getE() {
+        return e;
+    }
+
+    public void setE(int e) {
+        this.e = e;
+    }
+
+    public int getAll() {
+        return all;
+    }
+
+    public void setAll(int all) {
+        this.all = all;
+    }
+
 }

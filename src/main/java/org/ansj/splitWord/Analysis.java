@@ -25,7 +25,6 @@ import org.ansj.util.WordAlert;
  * 基本分词+人名识别
  * 
  * @author ansj
- * 
  */
 public abstract class Analysis {
 
@@ -58,8 +57,7 @@ public abstract class Analysis {
         br = new BufferedReader(reader);
     }
 
-    protected Analysis() {
-    };
+    protected Analysis() {};
 
     private LinkedList<Term> terms = new LinkedList<Term>();
 
@@ -93,7 +91,7 @@ public abstract class Analysis {
 
         offe += tempLength;
 
-        //歧异处理字符串
+        // 歧异处理字符串
 
         analysisStr(temp);
 
@@ -108,6 +106,7 @@ public abstract class Analysis {
 
     /**
      * 一整句话分词,用户设置的歧异优先
+     * 
      * @param temp
      */
     private void analysisStr(String temp) {
@@ -124,15 +123,16 @@ public abstract class Analysis {
                 params = gw.getParams();
                 startOffe = gw.offe;
                 for (int i = 0; i < params.length; i += 2) {
-                    gp.addTerm(new Term(params[i], startOffe, new TermNatures(new TermNature(
-                        params[i + 1], 1))));
+                    gp.addTerm(new Term(params[i], startOffe, new TermNatures(
+                            new TermNature(params[i + 1], 1))));
                     startOffe += params[i].length();
                 }
             }
             if (startOffe == 0) {
                 analysis(gp, temp, startOffe);
             } else {
-                analysis(gp, temp.substring(startOffe, temp.length()), startOffe);
+                analysis(gp, temp.substring(startOffe, temp.length()),
+                        startOffe);
             }
         } else {
             analysis(gp, temp, startOffe);
@@ -156,7 +156,8 @@ public abstract class Analysis {
         for (int i = 0; i < length; i++) {
             switch (status[conversion(temp.charAt(i))]) {
                 case 0:
-                    gp.addTerm(new Term(temp.charAt(i) + "", startOffe + i, TermNatures.NULL));
+                    gp.addTerm(new Term(temp.charAt(i) + "", startOffe + i,
+                            TermNatures.NULL));
                     break;
                 case 4:
                     start = i;
@@ -190,13 +191,15 @@ public abstract class Analysis {
                     }
 
                     if (start == end) {
-                        gp.addTerm(new Term(String.valueOf(c), i + startOffe, TermNatures.NULL));
+                        gp.addTerm(new Term(String.valueOf(c), i + startOffe,
+                                TermNatures.NULL));
                     }
 
                     str = temp.substring(start, end);
                     gwi.setStr(str);
                     while ((str = gwi.allWords()) != null) {
-                        gp.addTerm(new Term(str, gwi.offe + start + startOffe, gwi.getTermNatures()));
+                        gp.addTerm(new Term(str, gwi.offe + start + startOffe,
+                                gwi.getTermNatures()));
                     }
 
                     /**
@@ -205,7 +208,8 @@ public abstract class Analysis {
                     if (IN_SYSTEM[c] > 0 || status[c] > 3) {
                         i -= 1;
                     } else {
-                        gp.addTerm(new Term(String.valueOf(c), i + startOffe, TermNatures.NULL));
+                        gp.addTerm(new Term(String.valueOf(c), i + startOffe,
+                                TermNatures.NULL));
                     }
 
                     break;

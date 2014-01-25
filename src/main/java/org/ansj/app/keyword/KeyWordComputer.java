@@ -9,7 +9,6 @@ import java.util.TreeSet;
 
 import org.ansj.app.newWord.LearnTool;
 import org.ansj.domain.Term;
-import org.ansj.recognition.NatureRecognition;
 import org.ansj.splitWord.analysis.NlpAnalysis;
 
 public class KeyWordComputer {
@@ -22,6 +21,7 @@ public class KeyWordComputer {
 
     /**
      * 返回关键词个数
+     * 
      * @param nKeyword
      */
     public KeyWordComputer(int nKeyword) {
@@ -30,8 +30,8 @@ public class KeyWordComputer {
     }
 
     /**
-     * 
-     * @param content 正文
+     * @param content
+     *            正文
      * @return
      */
     private List<Keyword> computeArticleTfidf(String content, int titleLength) {
@@ -41,13 +41,14 @@ public class KeyWordComputer {
         List<Term> parse = NlpAnalysis.parse(content, learn);
         parse = NlpAnalysis.parse(content, learn);
 
-        for (Term term : parse) {
+        for (Term term: parse) {
             int weight = getWeight(term, content.length(), titleLength);
             if (weight == 0)
                 continue;
             Keyword keyword = tm.get(term.getName());
             if (keyword == null) {
-                keyword = new Keyword(term.getName(), term.getNatrue().allFrequency, weight);
+                keyword = new Keyword(term.getName(),
+                        term.getNatrue().allFrequency, weight);
                 tm.put(term.getName(), keyword);
             } else {
                 keyword.updateWeight(1);
@@ -66,9 +67,10 @@ public class KeyWordComputer {
     }
 
     /**
-     * 
-     * @param title 标题 
-     * @param content   正文
+     * @param title
+     *            标题
+     * @param content
+     *            正文
      * @return
      */
     public Collection<Keyword> computeArticleTfidf(String title, String content) {
@@ -77,6 +79,7 @@ public class KeyWordComputer {
 
     /**
      * 只有正文
+     * 
      * @param content
      * @return
      */

@@ -20,7 +20,6 @@ import org.ansj.util.MyStaticValue;
  * 标准分词
  * 
  * @author ansj
- * 
  */
 public class ToAnalysis extends Analysis {
 
@@ -55,7 +54,7 @@ public class ToAnalysis extends Analysis {
                 if (forests == null) {
                     userDefineRecognition(graph, null);
                 } else {
-                    for (Forest forest : forests) {
+                    for (Forest forest: forests) {
                         if (forest == null)
                             continue;
                         userDefineRecognition(graph, forest);
@@ -86,8 +85,7 @@ public class ToAnalysis extends Analysis {
         return merger.merger();
     }
 
-    private ToAnalysis() {
-    };
+    private ToAnalysis() {};
 
     /**
      * 用户自己定义的词典
@@ -97,7 +95,9 @@ public class ToAnalysis extends Analysis {
     public ToAnalysis(Forest[] forests) {
         // TODO Auto-generated constructor stub
         if (forests == null) {
-            forests = new Forest[] { UserDefineLibrary.FOREST };
+            forests = new Forest[] {
+                UserDefineLibrary.FOREST
+            };
         }
         this.forests = forests;
     }
@@ -109,7 +109,9 @@ public class ToAnalysis extends Analysis {
     public ToAnalysis(Reader reader, Forest[] forests) {
         super(reader);
         if (forests == null) {
-            forests = new Forest[] { UserDefineLibrary.FOREST };
+            forests = new Forest[] {
+                UserDefineLibrary.FOREST
+            };
         }
         this.forests = forests;
     }
