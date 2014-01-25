@@ -13,6 +13,9 @@ import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 import org.eclipse.jetty.util.thread.QueuedThreadPool;
 
+/**
+ * @author tess3ract <hty0807@gmail.com>
+ */
 public class AnsjServer {
 
     private final static String WARM_UP_WORD = "你好";

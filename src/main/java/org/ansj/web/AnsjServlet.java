@@ -15,6 +15,9 @@ import org.ansj.splitWord.analysis.IndexAnalysis;
 import org.ansj.splitWord.analysis.NlpAnalysis;
 import org.ansj.splitWord.analysis.ToAnalysis;
 
+/**
+ * @author tess3ract <hty0807@gmail.com>
+ */
 public class AnsjServlet extends HttpServlet {
 
     private enum AnsjMethod {
@@ -27,7 +30,9 @@ public class AnsjServlet extends HttpServlet {
             throws IOException {
         String input = req.getParameter("input");
         String strMethod = req.getParameter("method");
+        String strNature = req.getParameter("nature");
         AnsjMethod method = AnsjMethod.TO;
+        boolean nature = false;
         resp.setHeader("Content-Type", "text/plain; charset=utf-8");
         if (input == null) {
             resp.sendError(500, "Input not specified");
@@ -35,6 +40,9 @@ public class AnsjServlet extends HttpServlet {
         }
         if (strMethod != null) {
             method = AnsjMethod.valueOf(strMethod.toUpperCase());
+        }
+        if (strNature != null) {
+            nature = Boolean.valueOf(strNature.toLowerCase());
         }
         List<Term> terms = null;
         switch (method) {
@@ -55,7 +63,9 @@ public class AnsjServlet extends HttpServlet {
             resp.sendError(500, "Failed to parse input");
             return;
         }
-        new NatureRecognition(terms).recognition();
+        if (nature) {
+            new NatureRecognition(terms).recognition();
+        }
         for (Term term: terms) {
             String tmp = term.getName() + "/" + term.getNatrue().natureStr
                     + " ";
