@@ -25,7 +25,7 @@ mvn exec:java -Dexec.mainClass="org.ansj.AnsjServer" -Dexec.args="<port> [contex
 
 ````
 http://127.0.0.1:8080/segment?input=待分词内容
-
+````
 
 ## 原作者说明
 
